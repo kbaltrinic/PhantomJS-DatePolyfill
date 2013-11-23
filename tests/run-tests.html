@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link rel="stylesheet" href="mocha.css"/>
+    <script type="text/javascript" src="mocha.js"></script>
+    <script type="text/javascript" src="chai.js"></script>
+    <script type="text/javascript">
+      mocha.setup('bdd');
+      assert = chai.assert;
+      expect = chai.expect;
+      should = chai.should();
+      chai.Assertion.includeStack = true;
+
+      //For validity need to compute this before we load the polyfill
+      d1 = new Date('2010-01-09')
+      d2 = new Date(2010, 0, 9)
+      timeZoneOffset = d2.getTime() - d2.getTime()
+
+    </script>
+    <script type="text/javascript" src="/testem.js"></script>
+    <script type="text/javascript" src="../phantomjs_dateparse_polyfill.js"></script>
+    <script type="text/javascript" src="YYYY-MMM-DD.spec.js"></script>
+  </head>
+  <body>
+    <div id="mocha"></div>
+  </body>
+  <script type="text/javascript">mocha.run();</script>
+</html>

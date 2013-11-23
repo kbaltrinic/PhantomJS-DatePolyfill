@@ -1,0 +1,15 @@
+{
+  "before_tests": "coffee -c tests/*.spec.coffee",
+  "after_tests": "rm tests/*.spec.js",
+  "test_page": "tests/run-tests.html",
+  "src_files": [
+    "phantomjs_dateparse_polyfill.js",
+  	"*.coffee"
+  ],
+  "launch_in_dev": [
+    "PhantomJS"
+  ],
+  "launch_in_ci": [
+    "PhantomJS"
+  ]
+}
