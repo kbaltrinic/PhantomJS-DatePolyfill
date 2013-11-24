@@ -7,7 +7,7 @@
   	"*.coffee"
   ],
   "launch_in_dev": [
-    "PhantomJS"
+    "PhantomJS", "Chrome", "FireFox"
   ],
   "launch_in_ci": [
     "PhantomJS"
