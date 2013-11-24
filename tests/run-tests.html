@@ -4,20 +4,22 @@
     <link rel="stylesheet" href="mocha.css"/>
     <script type="text/javascript" src="mocha.js"></script>
     <script type="text/javascript" src="chai.js"></script>
+    <script type="text/javascript" src="/testem.js"></script>
     <script type="text/javascript">
       mocha.setup('bdd');
-      assert = chai.assert;
-      expect = chai.expect;
-      should = chai.should();
+
+      //using var below per https://github.com/chaijs/chai/issues/107
+      var assert = chai.assert;
+      var expect = chai.expect;
+      var should = chai.should();
       chai.Assertion.includeStack = true;
 
       //For validity need to compute this before we load the polyfill
-      d1 = new Date('2010-01-09')
+      d1 = new Date('2010-01-09T00:00:00')
       d2 = new Date(2010, 0, 9)
-      timeZoneOffset = d2.getTime() - d2.getTime()
+      timeZoneOffset = d1.getTime() - d2.getTime();
 
     </script>
-    <script type="text/javascript" src="/testem.js"></script>
     <script type="text/javascript" src="../phantomjs_dateparse_polyfill.js"></script>
     <script type="text/javascript" src="YYYY-MMM-DD.spec.js"></script>
   </head>

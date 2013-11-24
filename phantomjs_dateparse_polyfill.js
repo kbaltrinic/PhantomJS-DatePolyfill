@@ -13,7 +13,7 @@
         Nov: "11",
         Dec: "12"
     };
-    var rx = /(\d{4}) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{1,2})/i;
+    var rx = /(\d{4}) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{1,2}) /i;
 
     var fixStringDate = function (sDate) {
         //If sDate contains NNNN abc [N]N covert it to NNNN-NN-NN and add "T"
@@ -22,7 +22,7 @@
         if (pDate) {
             sDate = sDate.replace(
                 rx,
-                pDate[1] + "-" + map[pDate[2]] + "-" + (pDate[3].length == 1 ? "0" : "") + pDate[3]
+                pDate[1] + "-" + map[pDate[2]] + "-" + (pDate[3].length == 1 ? "0" : "") + pDate[3] + "T"
             );
         }
         return sDate;
@@ -42,7 +42,7 @@
                 this.__realDateObject = new JSDate(fixStringDate(arguments[0]))
             } else {
                 JSDate.prototype.constructor.apply(null, arguments);
-                //Can't get apply to work against JSDate's constructor. 
+                //Can't get apply to work against JSDate's constructor.
                 //It always returns the current date and time. :-(
                 if (arguments.length == 1)
                     this.__realDateObject = new JSDate(arguments[0]);
