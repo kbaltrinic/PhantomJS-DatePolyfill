@@ -31,45 +31,28 @@
     Date = (function (JSDate) {
 
         function newDate() {
+            var theDate;
             if (arguments.length === 1 && typeof arguments[0] === "string") {
-                this.__realDateObject = new JSDate(fixStringDate(arguments[0]))
+                theDate = new JSDate(fixStringDate(arguments[0]))
             } else {
                 //Can't get apply to work against JSDate's constructor.
                 //It always returns the current date and time. :-(
                 if (arguments.length == 1)
-                    this.__realDateObject = new JSDate(arguments[0]);
+                    theDate = new JSDate(arguments[0]);
                 else if (arguments.length == 2)
-                    this.__realDateObject = new JSDate(arguments[0], arguments[1]);
+                    theDate = new JSDate(arguments[0], arguments[1]);
                 else if (arguments.length == 3)
-                    this.__realDateObject = new JSDate(arguments[0], arguments[1], arguments[2]);
+                    theDate = new JSDate(arguments[0], arguments[1], arguments[2]);
                 else if (arguments.length == 4)
-                    this.__realDateObject = new JSDate(arguments[0], arguments[1], arguments[2], arguments[3]);
+                    theDate = new JSDate(arguments[0], arguments[1], arguments[2], arguments[3]);
                 else if (arguments.length == 5)
-                    this.__realDateObject = new JSDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4]);
+                    theDate = new JSDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4]);
                 else if (arguments.length == 6)
-                    this.__realDateObject = new JSDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
+                    theDate = new JSDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
                 else if (arguments.length == 7)
-                    this.__realDateObject = new JSDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
+                    theDate = new JSDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
             }
-        }
-
-        //These override are needed because if you call getDate() for instance on our new
-        //subclass of Date, you will get an error to the effect of "object is not an instance of Date"
-        //See http://stackoverflow.com/questions/6075231/how-to-extend-the-javascript-date-object
-        //So we have to redirect all the calls to go against an instance of a real date!
-
-        //It would be nice if we could iterate over Object.keys(new Date) to create these.
-        //We can't because Date, being build in, has no keys.  I pulled the list of methods
-        //to override from the w3Schools documentation for the date class:
-        //http://www.w3schools.com/jsref/jsref_obj_date.asp
-        //Of these UTC() and parse() have been omitted as being class methods not instance methods.
-        var functions = ["getDate", "getDay", "getFullYear", "getHours", "getMilliseconds", "getMinutes", "getMonth", "getSeconds", "getTime", "getTimezoneOffset", "getUTCDate", "getUTCDay", "getUTCFullYear", "getUTCHours", "getUTCMilliseconds", "getUTCMinutes", "getUTCMonth", "getUTCSeconds", "getYear", "setDate", "setFullYear", "setHours", "setMilliseconds", "setMinutes", "setMonth", "setSeconds", "setTime", "setUTCDate", "setUTCFullYear", "setUTCHours", "setUTCMilliseconds", "setUTCMinutes", "setUTCMonth", "setUTCSeconds", "setYear", "toDateString", "toGMTString", "toISOString", "toJSON", "toLocaleDateString", "toLocaleTimeString", "toLocaleString", "toString", "toTimeString", "toUTCString", "valueOf"]
-        for (var i = 0; i < functions.length; i++) {
-            (function (funcName) {
-                newDate.prototype[funcName] = function () {
-                    return JSDate.prototype[funcName].apply(this.__realDateObject, arguments);
-                };
-            })(functions[i]);
+            return theDate;
         }
 
         newDate.parse = function (sDate) {
