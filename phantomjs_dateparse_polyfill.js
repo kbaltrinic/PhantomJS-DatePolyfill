@@ -15,7 +15,7 @@
     };
     var rx = /(\d{4}) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{1,2}) /i;
 
-    var fixStringDate = function (sDate) {
+    function fixStringDate (sDate) {
         //If sDate contains NNNN abc [N]N covert it to NNNN-NN-NN and add "T"
         //to turn it into an ISO8601 date string which PhantomJS can parse.
         var pDate = rx.exec(sDate);
