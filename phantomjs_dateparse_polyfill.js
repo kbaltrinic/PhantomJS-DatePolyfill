@@ -30,18 +30,10 @@
 
     Date = (function (JSDate) {
 
-        function ctor() {
-            this.constructor = newDate;
-        }
-        ctor.prototype = JSDate.prototype;
-        newDate.prototype = new ctor();
-
         function newDate() {
             if (arguments.length === 1 && typeof arguments[0] === "string") {
-                JSDate.prototype.constructor.call(null, fixStringDate(arguments[0]));
                 this.__realDateObject = new JSDate(fixStringDate(arguments[0]))
             } else {
-                JSDate.prototype.constructor.apply(null, arguments);
                 //Can't get apply to work against JSDate's constructor.
                 //It always returns the current date and time. :-(
                 if (arguments.length == 1)
