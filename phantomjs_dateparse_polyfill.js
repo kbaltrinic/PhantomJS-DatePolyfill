@@ -30,36 +30,36 @@
 
     Date = (function (JSDate) {
 
-        function newDate() {
-            var theDate;
+        function dateCtorDecorator() {
+            var newDate;
             if (arguments.length === 1 && typeof arguments[0] === "string") {
-                theDate = new JSDate(fixStringDate(arguments[0]))
+                newDate = new JSDate(fixStringDate(arguments[0]))
             } else {
                 //Can't get apply to work against JSDate's constructor.
                 //It always returns the current date and time. :-(
                 if (arguments.length == 1)
-                    theDate = new JSDate(arguments[0]);
+                    newDate = new JSDate(arguments[0]);
                 else if (arguments.length == 2)
-                    theDate = new JSDate(arguments[0], arguments[1]);
+                    newDate = new JSDate(arguments[0], arguments[1]);
                 else if (arguments.length == 3)
-                    theDate = new JSDate(arguments[0], arguments[1], arguments[2]);
+                    newDate = new JSDate(arguments[0], arguments[1], arguments[2]);
                 else if (arguments.length == 4)
-                    theDate = new JSDate(arguments[0], arguments[1], arguments[2], arguments[3]);
+                    newDate = new JSDate(arguments[0], arguments[1], arguments[2], arguments[3]);
                 else if (arguments.length == 5)
-                    theDate = new JSDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4]);
+                    newDate = new JSDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4]);
                 else if (arguments.length == 6)
-                    theDate = new JSDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
+                    newDate = new JSDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
                 else if (arguments.length == 7)
-                    theDate = new JSDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
+                    newDate = new JSDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
             }
-            return theDate;
+            return newDate;
         }
 
-        newDate.parse = function (sDate) {
+        dateCtorDecorator.parse = function (sDate) {
             return JSDate.parse(fixStringDate(sDate));
         }
 
-        return newDate;
+        return dateCtorDecorator;
 
     })(Date)
 
