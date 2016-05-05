@@ -35,10 +35,7 @@
             if (arguments.length === 1 && typeof arguments[0] === "string") {
                 newDate = new JSDate(fixStringDate(arguments[0]))
             } else {
-                if (arguments.length == 1) {
-                    newDate = new (Function.prototype.bind.apply(Date, [Date].concat(Array.prototype.slice.call(arguments))))
-                }
-                    
+                newDate = new (Function.prototype.bind.apply(Date, [Date].concat(Array.prototype.slice.call(arguments))))
             }
             return newDate;
         }
