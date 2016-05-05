@@ -35,22 +35,10 @@
             if (arguments.length === 1 && typeof arguments[0] === "string") {
                 newDate = new JSDate(fixStringDate(arguments[0]))
             } else {
-                //Can't get apply to work against JSDate's constructor.
-                //It always returns the current date and time. :-(
-                if (arguments.length == 1)
-                    newDate = new JSDate(arguments[0]);
-                else if (arguments.length == 2)
-                    newDate = new JSDate(arguments[0], arguments[1]);
-                else if (arguments.length == 3)
-                    newDate = new JSDate(arguments[0], arguments[1], arguments[2]);
-                else if (arguments.length == 4)
-                    newDate = new JSDate(arguments[0], arguments[1], arguments[2], arguments[3]);
-                else if (arguments.length == 5)
-                    newDate = new JSDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4]);
-                else if (arguments.length == 6)
-                    newDate = new JSDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
-                else if (arguments.length == 7)
-                    newDate = new JSDate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
+                if (arguments.length == 1) {
+                    newDate = new (Function.prototype.bind.apply(Date, [Date].concat(Array.prototype.slice.call(arguments))))
+                }
+                    
             }
             return newDate;
         }
